@@ -12,6 +12,7 @@ import { UsercartComponent } from './usercart/usercart.component';
 import { HomengoComponent } from './homengo/homengo.component';
 import { ShowCookComponent } from './show-cook/show-cook.component';
 import { CartngoComponent } from './cartngo/cartngo.component';
+import { ShowFoodieComponent } from './showfoodie/showfoodie.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -27,6 +28,8 @@ const routes: Routes = [
   {path:'homeCook/:foodiename',component:HomeCookComponent},
   {path:'homengo/:orgName',component:HomengoComponent},
   {path:'showcook/:cookname',component:ShowCookComponent},
+  {path:'showfoodie/:foodieId',component:ShowFoodieComponent},
+
   // {path:'homengo',component:CartngoComponent}
 ];
 

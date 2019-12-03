@@ -112,4 +112,11 @@ export class HttpClientService {
   getCookByName(cook){
     return this.httpClient.get<Cook>('http://localhost:5200'+'/'+cook.cookname)
   }
+  // public deleteFoodie(foodie) {
+  //   return this.httpClient.delete<Foodie>("http://localhost:5400/foodie" + "/" + foodie.foodieId);
+  // }
+  findByIdFoodie(id: String) {
+    console.log("FIND bY FOODIE");
+    return this.httpClient.get<Foodie>('http://localhost:5400/foodie' +"/"+id);
+  }
 }

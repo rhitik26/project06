@@ -10,14 +10,13 @@ import { HttpClientService, Cook, Foodselect } from '../service/http-client.serv
 export class AddCookComponent implements OnInit {
   foodselect:Foodselect = new Foodselect("","","","")
   cook: Cook = new Cook("", "", "", "", "", "", "", "", "", "", []);
-  cookname:string;
   
 
   // foodname: Cook['foodSelct']
   constructor(private route: ActivatedRoute, private httpClientService: HttpClientService) { }
 
   ngOnInit() {
-    this.cookname = this.route.snapshot.paramMap.get("cookname")
+    this.cook.cookname = this.route.snapshot.paramMap.get("cookname")
   }
   
   updateFood(): void {

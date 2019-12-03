@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeCookComponent } from './home-cook/home-cook.component';
 import { CartComponent } from './cart/cart.component';
 import { IndianComponent } from './indian/indian.component';
@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomengoComponent } from './homengo/homengo.component';
 import { ShowCookComponent } from './show-cook/show-cook.component';
 import { CartngoComponent } from './cartngo/cartngo.component';
+import { ShowFoodieComponent } from './showfoodie/showfoodie.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +41,15 @@ import { CartngoComponent } from './cartngo/cartngo.component';
     FooterComponent,
     HomengoComponent,
     ShowCookComponent,
-    CartngoComponent
+    CartngoComponent,
+    ShowFoodieComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
    
   ],
   providers: [],

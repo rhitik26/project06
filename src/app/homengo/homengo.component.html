@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10">
-            
+
         </div>
         <div class="col-md-2">
             <div class="row">
                 <div class="col-md-6">
-                    <button id="cart"  [routerLink]="['/ngocart']">
+                    <button id="cart" [routerLink]="['/ngocart']">
                         <i class="fa fa-shopping-cart" style="font-size:36px;color:white"></i>
                     </button>
                 </div>
@@ -27,35 +27,36 @@
         </div>
     </div>
     <div class="row">
-            <div class="col-md-6" *ngFor="let cook of cooks" align="center">
-                <div class="card">
-                    <img src="http://simpleicon.com/wp-content/uploads/user1.png" class="card-img-top" id="cart1" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{cook.cookname}}</h5>
-                        <p class="card-text">Location: {{cook.cooklocation}}</p>
-                    </div>
-                    <table align="center">
-                        <tr align="center">
-                            
-                            <td><b>ITEM</b></td>
-                            <td>Price</td>
-                            <td>Quantity</td>
-                        </tr>
-                        <form class="form-inline" *ngFor="let item of cook.cookfoods" >
-                    
-                        <tr>
-                            <td align="left" id="fname">{{item.foodname}}</td>
-                            <td align="right" id="fprice">{{item.foodprice}}</td>
-                            <td align="right"><input type="number" style="width:50px;text-align: right;border-radius: 25px;" min="0" max="{{item.foodquant}}" id="fquant" name="fquant" [(ngModel)]="carts.foodquant"></td>
-                        </tr>
-                        </form>
-                    </table>
-                
-                    <div class="card-body" align="center">
-                        <button type="submit"  class="card-link btn btn-primary" (ngSubmit)="updateNgo()">Add to Cart +</button>
-                    </div>
+        <div class="col-md-6" *ngFor="let cook of cooks" align="center">
+            <div class="card">
+                <img src="http://simpleicon.com/wp-content/uploads/user1.png" class="card-img-top" id="cart1" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{cook.cookname}}</h5>
+                    <p class="card-text">Location: {{cook.cooklocation}}</p>
+                </div>
+                <table align="center">
+                    <tr align="center">
+
+                        <td><b>ITEM</b></td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                    </tr>
+
+
+                    <tr *ngFor="let item of cook.cookfoods">
+                        <td align="left" id="fname">{{item.foodname}}</td>
+                        <td align="right" id="fprice">{{item.foodprice}}</td>
+                        <td align="right"><input type="number" style="width:50px;text-align: right;border-radius: 25px;"
+                                min="0" max="{{item.foodquant}}" id="fquant" name="fquant"></td>
+                    </tr>
+                </table>
+
+                <div class="card-body" align="center">
+                    <button type="submit" class="card-link btn btn-primary" (ngSubmit)="updateNgo()">Add to Cart
+                        +</button>
                 </div>
             </div>
         </div>
-    
+    </div>
+
 </div>

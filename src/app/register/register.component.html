@@ -4,7 +4,7 @@
         <div style="text-align: center">
             <h1 style="font-family:Sofia;color: aliceblue;font-size:50pt;">Sign Up</h1>
         </div>
-        <form class="form-inline" id="register" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+        <form class="form-inline form-group" id="register" #userForm="ngForm" (ngSubmit)="onSubmit(userForm) && f.form.valid && onSubmit()"  #f="ngForm" novalidate>
             <div class="col-md-1"></div>
             <div class="col-md-10 col-sm-10">
 
@@ -27,49 +27,89 @@
 
                 <table *ngIf="recom == 'Cook'">
                     <tr>
-                        <td align="right">Name:</td>
+                        <td align="right"><label form="Name">Name:</label></td>
                         <td>
-                            <input type="text" class="form-control" style="height:30px" placeholder="Enter your Name"
-                                id="name1" name="name" pattern="^[a-zA-Z]" required [(ngModel)]="cook.cookname"></td>
+                            <input name="name" type="text" class="form-control" style="height:30px" placeholder="Enter your Name"
+                                id="name1" required [(ngModel)]="cook.cookname" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required>
+                                <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                                        <div *ngIf="name.errors.required">First Name is required</div>
+                                    </div>
+                            </td>
+                                
                     </tr>
                     <tr>
-                        <td align="right">User Name:</td>
+                        <td align="right"><label for="userName">User Name:</label></td>
                         <td><input type="text" class="form-control" style="height:30px"
                                 placeholder="Enter your User Name" id="uname" name="uname" pattern="^[a-zA-Z0-9]+$"
                                 required [(ngModel)]="cook.cookusername" /></td>
+                                <td>
+                                    <div class="invalid-feedback">
+                                        <div>UserName is required</div>
+                                    </div>
+                                </td>
 
                     </tr>
                     <tr>
-                        <td align="right">Please enter your Unique ID:</td>
+                        <td align="right"><label for="UID">Please enter your Unique ID:</label></td>
                         <td><input type="text" class="form-control" style="height:30px" placeholder="Enter your ID"
                                 id="cookid" name="cookid" pattern="^[a-zA-Z0-9]+$" required [(ngModel)]="cook.cookid" />
+                        </td>
+                        <td>
+                            <div class="invalid-feedback">
+                                <div>Unique Id is required</div>
+                                <div>Unique Id must be a number</div>
+                            </div>
                         </td>
 
                     </tr>
                     <tr>
-                        <td>Password:
+                        <td><label for="pass">Password:</label>
                             <input type="password" class="form-control" style="height:30px" placeholder="Enter password"
                                 id="password" name="pass" pattern="^(?=.*\d).{8,12}$" required /></td>
-                        <td> Confirm Password:
+                                <td>
+                                    <div class="invalid-feedback">
+                                        <div>Password is required</div>
+                                        <div>Password must be a alphanumeric</div>
+                                    </div>
+                                </td>
+                        <td><label for="cpass"> Confirm Password:</label>
                             <input type="password" class="form-control" style="height:30px"
                                 placeholder="Re-enter password" id="cpassword" name="cpass" pattern="^(?=.*\d).{8,12}$"
                                 required [(ngModel)]="cook.cookpassword" /></td>
+                                <td>
+                                    <div class="invalid-feedback">
+                                        <div>Password is required</div>
+                                        <div>Password must be a alphanumeric</div>
+                                    </div>
+                                </td>
 
                     </tr>
                     <tr>
-                        <td align="right">Email:</td>
+                        <td align="right"><label for="email">Email:</label></td>
                         <td><input type="email" class="form-control" style="height:30px" placeholder="Enter your Email"
                                 id="email1" name="email" [(ngModel)]="cook.cookemail" /></td>
+                                <td>
+                                    <div class="invalid-feedback">
+                                        <div>Email is required</div>
+                                        <div>Email must have a @ symbol</div>
+                                    </div>
+                                </td>
                     </tr>
                     <tr>
-                        <td align="right">Phone :</td>
+                        <td align="right"><label for="phn">Phone :</label></td>
                         <td><input type="text" class="form-control" style="height:30px" placeholder="Phone" id="phone"
                                 [(ngModel)]="cook.cookphone" name="phone" data-mismatch="Enter valid phone number"
                                 pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" required /></td>
+                                <td>
+                                    <div class="invalid-feedback">
+                                        <div>Phone must be  10 digit</div>
+                                        <div>Phone is required</div>
+                                    </div>
+                                </td>
                     </tr>
 
                     <tr>
-                        <td style="vertical-align: baseline" align="right">Address Line 1: </td>
+                        <td style="vertical-align: baseline" align="right"><label for="address">Address: </label></td>
                         <td>
                             <input type="text" class="form-control" style="height:30px"
                                 placeholder="Enter Address Line 1" id="add1" name="address"
@@ -77,13 +117,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="vertical-align: baseline;" align="right">City
+                        <td style="vertical-align: baseline;" align="right"><label for="city">City</label>
 
                             <input type="text" class="form-control" style="height:30px" placeholder="Enter City"
                                 id="city" name="city" [(ngModel)]="cook.cookcity" />
                         </td>
                         <td>
-                            Zip Code:
+                           <label for="Zip"> Zip Code:</label>
 
                             <input type="text" class="form-control" style="height:30px" placeholder="Enter Zip Code"
                                 name="zip" id="ZipCode" [(ngModel)]="cook.cookzip" />
@@ -92,7 +132,7 @@
 
                     <tfoot>
                         <td colspan="2" align="center">
-                            <button type="submit" class="btn btn-primary">Lets Get
+                            <button  class="btn btn-primary">Lets Get
                                 Ordering >>
                             </button>
                         </td>
@@ -144,33 +184,25 @@
                     <tr>
                         <td style="vertical-align: baseline" align="right">Address Line 1: </td>
                         <td>
-                            <textarea class="form-control" style="height:30px" placeholder="Enter Address Line 1"
-                                id="address" name="address" [(ngModel)]="foodie.foodieAddress" cols="3" rows="3">
+                            <textarea class="form-control" placeholder="Enter Address Line 1"
+                                id="address" name="address" [(ngModel)]="foodie.foodieAddress" cols="25" rows="3">
                                     </textarea>
                         </td>
                     </tr>
 
                     <tr>
-                        <td style="vertical-align: baseline;" align="right">City
+                       
+                            <td style="vertical-align: baseline;" align="right"><label for="city">City</label>
 
-                            <select class="form-control" id="foodie.foodieCity" style="background-color: white"
-                                name="foodie.foodieCity" [(ngModel)]="foodie.foodieCity">
-                                <option>
-                                    Select a City
-                                </option>
-                                <option>
-                                    New Delhi
-                                </option>
-                                <option>
-                                    Bangalore
-                                </option>
-                            </select>
-                        </td>
+                                <input type="text" class="form-control" style="height:30px" placeholder="Enter City"
+                                    id="city" name="city" [(ngModel)]="cook.cookcity" />
+                            </td>
+                        
                         <td>
                             Zip Code:
                             <input type="text" class="form-control" style="height: 30px;"
                                 placeholder="Enter your Zip Code" name="foodie.foodieZip" id="foodie.foodieZip"
-                                [(ngModel)]="foodie.foodieZip" />
+                                [(ngModel)]="foodie.foodieZip"  />
                         </td>
                     </tr>
 

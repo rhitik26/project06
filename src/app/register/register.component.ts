@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClientService, Cook,NGO, Foodie } from '../service/http-client.service';
 
 
@@ -12,8 +12,11 @@ import { HttpClientService, Cook,NGO, Foodie } from '../service/http-client.serv
 export class RegisterComponent implements OnInit {
 
   cook: Cook = new Cook("", "", "", "", "", "", "", "","","",[]);
-  foodie: Foodie = new Foodie("","","","","","","","")
+  foodie: Foodie = new Foodie("","","","","","","","");
   ngo: NGO=new NGO("","","","","","","","",[]);
+  form=new FormGroup({
+    name:new FormControl('',Validators.required)
+  })
 
   constructor(private router: Router, private httpClientService: HttpClientService) { }
 
@@ -33,7 +36,7 @@ export class RegisterComponent implements OnInit {
       });
   }
   createFoodie(): void {
-    this.httpClientService.createCook(this.cook)
+    this.httpClientService.createFoodie(this.foodie)
       .subscribe(data => {
         alert("Foodie added successfully.");
       });
